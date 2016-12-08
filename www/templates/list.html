@@ -1,0 +1,14 @@
+<ion-view view-title="Liste des cartes">
+    <ion-content >
+
+        <div class="card" ng-repeat="item in itemsList">
+            <div class="item item-divider" ng-click="gotoEdit(item.id)">
+                {{item.title}}
+            </div>
+        </div>
+
+        <a href="#/form/" class="button button-block button-positive">
+            <i class="icon ion-plus-circled"></i> Ajouter
+        </a>
+    </ion-content>
+</ion-view>
