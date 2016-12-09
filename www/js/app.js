@@ -44,10 +44,12 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services'])
       $urlRouterProvider.otherwise('/home')
     })
 
-// ----------------------------------------------------------------------------CONTROLLERS
+
 angular.module('starter.controllers', [])
 
-    .controller('GameCtrl', function ($scope,$ionicPlatform, $state, CardsDataService) {
+
+    // ----------------------------------------------------------------------------JEU
+    .controller('GameCtrl', function ($scope,$ionicPlatform, $state,$timeout, CardsDataService) {
         $scope.$on('$ionicView.enter', function(e) {
             CardsDataService.getAll(function(data){
                 $scope.indexToShow = 0;
@@ -56,14 +58,15 @@ angular.module('starter.controllers', [])
                 $scope.scoreLeft = 0;
                 $scope.scoreRight = 0;
                 $scope.team = 1;
+                $scope.counter = 40;
+                var mytimeout = null;
                 var round = 0;
                 change('error');
-
 // Scores
                 $scope.valide = function(){
                     $scope.findsList.push($scope.cardsList[0]);
                     $scope.cardsList.splice(0,1);
-                    if (round % 2 == 0) {
+                    if (round % 2 == 1) {
                     $scope.scoreRight++;
                     }
                   else {
@@ -80,7 +83,10 @@ angular.module('starter.controllers', [])
                 $scope.ready = function(){
                     change('start');
                     $scope.findsList =  [];
+                    $scope.counter = 40;
+                    startTimer();
                 };
+
 // Afficher ou masquer les elements
                 function change(state){
                     if(state !== 'error'){
@@ -100,8 +106,48 @@ angular.module('starter.controllers', [])
                     }
                 }
 
+                $scope.onTimeout = function() {
+                    if($scope.counter ===  0) {
+                        $scope.$broadcast('timer-stopped', 0);
+                        $timeout.cancel(mytimeout);
+                        round++;
+                        change('error');
+                        $scope.team =  (round % 2) + 1;
+                        return;
+                    }
+                    $scope.counter--;
+                    mytimeout = $timeout($scope.onTimeout, 1000);
+                };
+
+                $scope.waitTimer = function() {
+                    $timeout.cancel(mytimeout);
+                };
+
+                $scope.restartTimer = function() {
+                    startTimer();
+                };
+
+                function startTimer() {
+                    mytimeout = $timeout($scope.onTimeout, 1000);
+                };
+
+                // temps écoulé
+                $scope.$on('timer-stopped', function(event, remaining) {
+                    if(remaining === 0) {
+
+
+                    }
+                });
+
+
             })
         })
+
+
+
+
+
+
 
         $scope.gotoEdit = function(idNote){
             $state.go('form', {id: idNote})
@@ -158,6 +204,10 @@ angular.module('starter.controllers', [])
                 }
             })
         }
+
+
+
+
 
 
     })

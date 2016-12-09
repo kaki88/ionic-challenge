@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.ionicframework.app822007" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>app</name>
+  <name>Ionic Challenge</name>
   <description>
-        An Ionic Framework and Cordova project.
+      Projet découverte du Framework
     </description>
-  <author email="you@example.com" href="http://example.com/">
-      Your Name Here
+  <author email="perrinolivier88@gmail.com" href="http://pro-concours.com/">
+      Olivier PERRIN
     </author>
   <content src="index.html"/>
   <access origin="*"/>
