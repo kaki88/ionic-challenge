@@ -11,6 +11,7 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services'])
         }
       })
     })
+    // ----------------------------------------------------------------------------ROUTES
     .config(function($stateProvider, $urlRouterProvider) {
       $stateProvider
 
@@ -19,7 +20,7 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services'])
               templateUrl: 'templates/home.html'
           })  
           
-          .state('game', {
+          .state('jeu', {
               url: '/game',
               templateUrl: 'templates/game.html',
               controller: 'GameCtrl'
@@ -43,7 +44,7 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services'])
       $urlRouterProvider.otherwise('/home')
     })
 
-
+// ----------------------------------------------------------------------------CONTROLLERS
 angular.module('starter.controllers', [])
 
     .controller('GameCtrl', function ($scope,$ionicPlatform, $state, CardsDataService) {
@@ -52,15 +53,53 @@ angular.module('starter.controllers', [])
                 $scope.indexToShow = 0;
                 $scope.cardsList = data;
                 $scope.findsList =  [];
-                console.log(data);
-                console.log( $scope.findsList);
+                $scope.scoreLeft = 0;
+                $scope.scoreRight = 0;
+                $scope.team = 1;
+                var round = 0;
+                change('error');
 
-                $scope.change = function(){
+// Scores
+                $scope.valide = function(){
                     $scope.findsList.push($scope.cardsList[0]);
                     $scope.cardsList.splice(0,1);
-                    console.log(data);
-                    console.log( $scope.findsList);
+                    if (round % 2 == 0) {
+                    $scope.scoreRight++;
+                    }
+                  else {
+                        $scope.scoreLeft++;
+                    }
                 };
+// Faute de jeu
+                $scope.error = function(){
+                    round++;
+                    change('error');
+                    $scope.team =  (round % 2) + 1;
+                };
+// Joueurs prêts
+                $scope.ready = function(){
+                    change('start');
+                    $scope.findsList =  [];
+                };
+// Afficher ou masquer les elements
+                function change(state){
+                    if(state !== 'error'){
+                        $scope.roundEnd = function(){
+                            return "ng-hide";
+                        }
+                        $scope.roundStart = function(){
+                            return "ng-show";
+                        }
+                    } else {
+                        $scope.roundEnd = function(){
+                            return "ng-show";
+                        }
+                        $scope.roundStart = function(){
+                            return "ng-hide";
+                        }
+                    }
+                }
+
             })
         })
 

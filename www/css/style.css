@@ -1,1 +1,12 @@
-/* Empty. Add your own CSS if you like */
+/*---------------------------------------------------------------------------------------game */
+.team-left{
+    background-color: blue;
+    color: white;
+    padding: 5px;
+}
+
+.team-right{
+    background-color: green;
+    color: white;
+    padding: 5px;
+}
