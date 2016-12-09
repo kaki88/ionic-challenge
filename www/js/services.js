@@ -30,7 +30,8 @@ angular.module('starter.services', ['ngCordova'])
             if(window.cordova){
                 useSqlLite()
             } else {
-                useWebSql()
+                useWebSql();
+                initDatabase();
             }
 
         })

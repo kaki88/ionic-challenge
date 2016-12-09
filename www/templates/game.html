@@ -1,17 +1,39 @@
 <ion-view view-title="Jeu">
     <ion-content >
 
+        <div class = "row">
+<div class="team-left col-50">Equipe 1<br>
+    {{scoreLeft}}
+</div>
+        <div class="team-right col-50 text-right">Equipe 2<br>
+            {{scoreRight}}
+        </div>
+        </div>
+
+        <div class="{{roundEnd()}}">
+        <div class="card" style="height: 60vh">
+            <div class="item"  ng-repeat="find in findsList">
+                {{find.title}}
+            </div>
+        </div>
+            <div> A toi équipe  {{team}} </div>
+            <div class="button button-block button-positive" ng-click="ready()" >
+                <i class="icon ion-plus-circled"></i> PRET</div>
+        </div>
+
+        <div class="{{roundStart()}}">
         <div class="card" ng-repeat="item in cardsList track by $index" ng-show="$index == indexToShow">
-            <div class="item item-divider" style="height: 60vh">
+
+            <div class="item" style="height: 60vh">
                 {{item.title}}
             </div>
         </div>
 
-        <div class="button button-block button-positive" ng-click="change()" >
+        <div class="button button-block button-positive" ng-click="valide()" >
             <i class="icon ion-plus-circled"></i> VALIDER</div>
 
-        <a href="#/form/" class="button button-block button-dark">
-            <i class="icon ion-minus-circled"></i> FAUTE DE JEU
-        </a>
+        <div class="button button-block button-dark" ng-click="error()" >
+            <i class="icon ion-minus-circled"></i>  FAUTE DE JEU</div>
+        </div>
     </ion-content>
 </ion-view>
