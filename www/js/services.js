@@ -18,6 +18,9 @@ angular.module('starter.services', ['ngCordova'])
         function initDatabase(){
             $cordovaSQLite.execute(db, 'CREATE TABLE IF NOT EXISTS cards (id integer primary key, title, category_id)')
             $cordovaSQLite.execute(db, 'CREATE TABLE IF NOT EXISTS categories (id integer primary key, name)')
+            $cordovaSQLite.execute(db, 'CREATE TABLE IF NOT EXISTS config (id integer primary key,name, value integer)')
+            $cordovaSQLite.execute(db, 'INSERT INTO config VALUES (1,"timer",45)')
+            $cordovaSQLite.execute(db, 'INSERT INTO config VALUES (2,"card",40)')
             $cordovaSQLite.execute(db, 'INSERT INTO cards VALUES (1,"mario",1)')
             $cordovaSQLite.execute(db, 'INSERT INTO cards VALUES (2,"superman",1)')
             $cordovaSQLite.execute(db, 'INSERT INTO cards VALUES (3,"hulk",2)')
@@ -47,17 +50,41 @@ angular.module('starter.services', ['ngCordova'])
             updateNote: function(card){
                 return $cordovaSQLite.execute(db, 'UPDATE cards set title = ?, category_id = ? where id = ?', [card.title, card.category_id, card.id])
             },
+            getTimer: function(callback){
+                $ionicPlatform.ready(function () {
+                    $cordovaSQLite.execute(db, 'SELECT value FROM config where name ="timer"').then(function (results) {
+                        callback(results.rows.item(0));
+                    })
+                })
+            },
+            updateTimer: function(res){
+                return $cordovaSQLite.execute(db, 'UPDATE config set value = ? where name ="timer"', [res])
+            },
+            getNumberCards: function(callback){
+                $ionicPlatform.ready(function () {
+                    $cordovaSQLite.execute(db, 'SELECT value FROM config where name ="card"').then(function (results) {
+                        callback(results.rows.item(0))
+                    })
+                })
+            },
+            updateNumberCards: function(res){
+                return $cordovaSQLite.execute(db, 'UPDATE config set value = ? where name ="card"', [res])
+            },
             getAll: function(callback){
                 $ionicPlatform.ready(function () {
-                    $cordovaSQLite.execute(db, 'SELECT * FROM cards  LIMIT 3').then(function (results) {
-                        var data = []
+                    $cordovaSQLite.execute(db, 'SELECT value FROM config where name ="card"').then(function (results) {
+                        var res = results.rows[0];
+                        var number = res.value;
+                        $cordovaSQLite.execute(db, 'SELECT * FROM cards  LIMIT ?', [number]).then(function (results) {
+                            var data = []
 
-                        for (i = 0, max = results.rows.length; i < max; i++) {
-                            data.push(results.rows.item(i))
-                        }
+                            for (i = 0, max = results.rows.length; i < max; i++) {
+                                data.push(results.rows.item(i))
+                            }
 
-                        callback(data)
-                    }, onErrorQuery)
+                            callback(data)
+                        }, onErrorQuery)
+                    })
                 })
             },
 

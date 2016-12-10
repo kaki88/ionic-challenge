@@ -16,7 +16,7 @@
         </div>
 
         <div class="{{roundEnd()}}">
-            <div class="card" style="height: 60vh">
+            <div class="card" style="height: 50vh">
                 <div class="item" ng-repeat="find in findsList">
                     {{find.title}}
                 </div>
@@ -30,7 +30,7 @@
         <div class="{{roundStart()}}">
             <div class="card" ng-repeat="item in cardsList track by $index" ng-show="$index == indexToShow">
 
-                <div class="item" style="height: 60vh">
+                <div class="item" style="height: 50vh">
                     {{item.title}}
                 </div>
             </div>
