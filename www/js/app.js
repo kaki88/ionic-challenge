@@ -26,6 +26,17 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services'])
               controller: 'GameCtrl'
           })
 
+          .state('configuration', {
+          url: '/config',
+          templateUrl: 'templates/config.html',
+          controller: 'ConfigCtrl'
+      })
+
+          .state('regle-du-jeu', {
+              url: '/rules',
+              templateUrl: 'templates/rules.html'
+          })
+
           .state('list', {
             url: '/list',
             templateUrl: 'templates/list.html',
@@ -51,17 +62,21 @@ angular.module('starter.controllers', [])
     // ----------------------------------------------------------------------------JEU
     .controller('GameCtrl', function ($scope,$ionicPlatform, $state,$timeout, CardsDataService) {
         $scope.$on('$ionicView.enter', function(e) {
+//Initialisation des paramètres 
             CardsDataService.getAll(function(data){
-                $scope.indexToShow = 0;
                 $scope.cardsList = data;
-                $scope.findsList =  [];
-                $scope.scoreLeft = 0;
-                $scope.scoreRight = 0;
-                $scope.team = 1;
-                $scope.counter = 40;
-                var mytimeout = null;
-                var round = 0;
-                change('error');
+            })
+            CardsDataService.getTimer(function(data){
+                $scope.counter = data.value;
+            })
+            $scope.indexToShow = 0;
+            $scope.findsList =  [];
+            $scope.scoreLeft = 0;
+            $scope.scoreRight = 0;
+            $scope.team = 1;
+            var mytimeout = null;
+            var round = 0;
+            change('error');
 // Scores
                 $scope.valide = function(){
                     $scope.findsList.push($scope.cardsList[0]);
@@ -83,7 +98,10 @@ angular.module('starter.controllers', [])
                 $scope.ready = function(){
                     change('start');
                     $scope.findsList =  [];
-                    $scope.counter = 40;
+                    $timeout.cancel(mytimeout);
+                    CardsDataService.getTimer(function(data){
+                        $scope.counter = data.value;
+                    })
                     startTimer();
                 };
 
@@ -141,18 +159,89 @@ angular.module('starter.controllers', [])
 
 
             })
-        })
-
-
-
-
-
-
 
         $scope.gotoEdit = function(idNote){
             $state.go('form', {id: idNote})
         }
     })
+
+    // ----------------------------------------------------------------------------CONFIGURATION
+    .controller('ConfigCtrl', function ($scope,$ionicPlatform, $state, CardsDataService, $ionicPopup) {
+        $scope.$on('$ionicView.enter', function(e) {
+            CardsDataService.getTimer(function(data){
+                $scope.timerConfig = data.value;
+            })
+            CardsDataService.getNumberCards(function(data){
+                $scope.cardConfig = data.value;
+            })
+        })
+
+        $scope.changeTimer = function(val){
+
+                $scope.data = { time: val}
+                var myPopup = $ionicPopup.show({
+                    template: '<input type = "number" ng-model = "data.time">',
+                    title: 'Durée du minuteur',
+                    subTitle: 'en secondes',
+                    scope: $scope,
+
+                    buttons: [
+                        { text: 'Annuler' }, {
+                            text: '<b>Valider</b>',
+                            type: 'button-positive',
+                            onTap: function(e) {
+
+                                if (!$scope.data.time) {
+                                    e.preventDefault();
+                                } else {
+                                    return $scope.data.time;
+                                }
+                            }
+                        }
+                    ]
+                });
+
+                myPopup.then(function(res) {
+                    CardsDataService.updateTimer(res)
+                });
+            };
+
+        $scope.changeCard = function(val){
+
+            $scope.data = { card: val}
+            var myPopup = $ionicPopup.show({
+                template: '<input type = "number" ng-model = "data.card">',
+                title: 'Nombre de cartes',
+                subTitle: 'pour chaque manche',
+                scope: $scope,
+
+                buttons: [
+                    { text: 'Annuler' }, {
+                        text: '<b>Valider</b>',
+                        type: 'button-positive',
+                        onTap: function(e) {
+
+                            if (!$scope.data.card) {
+                                e.preventDefault();
+                            } else {
+                                return $scope.data.card;
+                            }
+                        }
+                    }
+                ]
+            });
+
+            myPopup.then(function(res) {
+                CardsDataService.updateNumberCards(res)
+            });
+        };
+
+    })
+
+
+
+
+
 
     .controller('ListCtrl', function ($scope,$ionicPlatform, $state, CardsDataService) {
         $scope.$on('$ionicView.enter', function(e) {
