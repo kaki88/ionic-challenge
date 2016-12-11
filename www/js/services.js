@@ -19,6 +19,8 @@ angular.module('starter.services', ['ngCordova'])
             $cordovaSQLite.execute(db, 'CREATE TABLE IF NOT EXISTS cards (id integer primary key, title, category_id)')
             $cordovaSQLite.execute(db, 'CREATE TABLE IF NOT EXISTS categories (id integer primary key, name)')
             $cordovaSQLite.execute(db, 'CREATE TABLE IF NOT EXISTS config (id integer primary key,name, value integer)')
+            $cordovaSQLite.execute(db, 'INSERT INTO categories VALUES (1,"jeux video")')
+            $cordovaSQLite.execute(db, 'INSERT INTO categories VALUES (2,"personnages")')
             $cordovaSQLite.execute(db, 'INSERT INTO config VALUES (1,"timer",45)')
             $cordovaSQLite.execute(db, 'INSERT INTO config VALUES (2,"card",40)')
             $cordovaSQLite.execute(db, 'INSERT INTO cards VALUES (1,"mario",1)')
@@ -70,6 +72,23 @@ angular.module('starter.services', ['ngCordova'])
             updateNumberCards: function(res){
                 return $cordovaSQLite.execute(db, 'UPDATE config set value = ? where name ="card"', [res])
             },
+            getCards: function(callback){
+                $ionicPlatform.ready(function () {
+                    $cordovaSQLite.execute(db, 'SELECT value FROM config where name ="card"').then(function (results) {
+                        var res = results.rows[0];
+                        var number = res.value;
+                        $cordovaSQLite.execute(db, 'SELECT * FROM cards  LIMIT ?', [number]).then(function (results) {
+                            var data = []
+
+                            for (i = 0, max = results.rows.length; i < max; i++) {
+                                data.push(results.rows.item(i))
+                            }
+
+                            callback(data)
+                        }, onErrorQuery)
+                    })
+                })
+            },
             getAll: function(callback){
                 $ionicPlatform.ready(function () {
                     $cordovaSQLite.execute(db, 'SELECT value FROM config where name ="card"').then(function (results) {
@@ -87,6 +106,35 @@ angular.module('starter.services', ['ngCordova'])
                     })
                 })
             },
+            getCats: function(callback){
+                $ionicPlatform.ready(function () {
+                        $cordovaSQLite.execute(db, 'SELECT * FROM categories ').then(function (results) {
+                            var data = []
+
+                            for (i = 0, max = results.rows.length; i < max; i++) {
+                                data.push(results.rows.item(i))
+                            }
+
+                            callback(data)
+                        }, onErrorQuery)
+                })
+            },
+
+            getCatCards: function(id,callback){
+                var catconvert = parseInt(id);
+                $ionicPlatform.ready(function () {
+                    $cordovaSQLite.execute(db,'SELECT * FROM cards where category_id = ?', [catconvert]).then(function (results) {
+                        var cards = []
+
+                        for (i = 0, max = results.rows.length; i < max; i++) {
+                            cards.push(results.rows.item(i))
+                        }
+
+                        callback(cards)
+                    }, onErrorQuery)
+                })
+            },
+
 
             deleteNote: function(id){
                 return $cordovaSQLite.execute(db, 'DELETE FROM cards where id = ?', [id])

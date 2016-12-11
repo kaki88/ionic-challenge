@@ -1,14 +1,16 @@
-<ion-view view-title="Liste des cartes">
+<ion-view view-title="Catégories">
     <ion-content >
 
-        <div class="card" ng-repeat="item in itemsList">
-            <div class="item item-divider" ng-click="gotoEdit(item.id)">
-                {{item.title}}
-            </div>
-        </div>
 
-        <a href="#/form/" class="button button-block button-positive">
-            <i class="icon ion-plus-circled"></i> Ajouter
-        </a>
+        <ul ng-repeat="item in catsList">
+            <li class="item" ng-click="viewCat(item.id)">
+                <span>{{item.name}}</span>
+                <span class="right"> <i class="icon ion-eye"></i></span>
+            </li>
+        </ul>
+
+        <!--<a href="#/form/" class="button button-block button-positive">-->
+            <!--<i class="icon ion-plus-circled"></i> Ajouter-->
+        <!--</a>-->
     </ion-content>
 </ion-view>
