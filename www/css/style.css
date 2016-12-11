@@ -1,3 +1,12 @@
+/*---------------------------------------------------------------------------------------general */
+.right{
+    float: right;
+}
+
+.bold {
+    font-weight: bold;
+}
+
 /*---------------------------------------------------------------------------------------game */
 .team-left{
     background-color: blue;
@@ -11,6 +20,15 @@
     padding: 5px;
 }
 
-.right{
-    float: right;
+/*---------------------------------------------------------------------------------------home */
+.fixed-outside{
+    position: absolute;
+    bottom: 0;
+    color:white;
+    width: 100%;
+    text-align:center;
+}
+
+.home{
+    background-color: lightgoldenrodyellow;
 }
