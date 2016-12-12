@@ -1,10 +1,10 @@
-<ion-view view-title="Liste des cartes">
+<ion-view view-title="Cartes {{title}}">
     <ion-content >
 
         <ul ng-repeat="item in itemsList">
-        <li class="item" ng-click="gotoEdit(item.id)">
+        <li class="item">
             <span>{{item.title}}</span>
-            <span class="button button-small right"> <i class=" ion-edit"></i></span>
+            <span class="button button-small right"  ng-click="gotoEditCard(item)"> <i class=" ion-edit"></i></span>
         </li>
         </ul>
 

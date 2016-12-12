@@ -122,6 +122,7 @@ angular.module('starter.services', ['ngCordova'])
 
             getCatCards: function(id,callback){
                 var catconvert = parseInt(id);
+                console.log(id);
                 $ionicPlatform.ready(function () {
                     $cordovaSQLite.execute(db,'SELECT * FROM cards where category_id = ?', [catconvert]).then(function (results) {
                         var cards = []
@@ -136,17 +137,22 @@ angular.module('starter.services', ['ngCordova'])
             },
 
 
-            deleteNote: function(id){
+            deleteCard: function(id){
+                console.log(id);
                 return $cordovaSQLite.execute(db, 'DELETE FROM cards where id = ?', [id])
             },
 
-            getById: function(id, callback){
+            getCardById: function(id, callback){
                 $ionicPlatform.ready(function () {
-                    $cordovaSQLite.execute(db, 'SELECT * FROM cards where id = ?', [id]).then(function (results) {
+                    $cordovaSQLite.execute(db, 'SELECT * FROM cards  where id = ? ', [id]).then(function (results) {
                         callback(results.rows.item(0))
                     })
                 })
-            }
+            },
+            updateCard: function(card,cardId,cat){
+                return $cordovaSQLite.execute(db, 'UPDATE cards set title = ?, category_id = ? where id = ?', [card.title, cat, cardId])
+            },
+
         }
     })
 

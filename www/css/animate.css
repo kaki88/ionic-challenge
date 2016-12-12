@@ -2707,6 +2707,9 @@
   50% {
     opacity: 1;
   }
+  100% {
+    opacity: 0;
+  }
 }
 
 @keyframes zoomIn {
@@ -2717,13 +2720,33 @@
   }
 
   50% {
-    opacity: 1;
+       opacity: 1;
+     }
+
+  100% {
+    opacity: 0;
   }
 }
 
 .zoomIn {
   -webkit-animation-name: zoomIn;
   animation-name: zoomIn;
+  animation-duration: 1s;
+  animation-delay: 1s;
+}
+
+.zoomIn2 {
+  -webkit-animation-name: zoomIn;
+  animation-name: zoomIn;
+  animation-duration: 1s;
+  animation-delay: 2s;
+}
+
+.zoomIn3 {
+  -webkit-animation-name: zoomIn;
+  animation-name: zoomIn;
+  animation-duration: 1s;
+  animation-delay: 3s;
 }
 
 @-webkit-keyframes zoomInDown {

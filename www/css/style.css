@@ -7,6 +7,15 @@
     font-weight: bold;
 }
 
+.bar-footer.footer-buttons{
+    padding: 0px;
+}
+.bar-footer.footer-buttons .row{
+    padding: 0px;
+}
+.bar-footer.footer-buttons .row .col{
+    text-align: center;
+}
 /*---------------------------------------------------------------------------------------game */
 .team-left{
     background-color: blue;
@@ -20,6 +29,26 @@
     padding: 5px;
 }
 
+.game{
+    background-color: lightgoldenrodyellow;
+}
+
+.game .scroll-content {
+    display: table !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin-top: -50px; /* the height of the centered content */
+    text-align: center;
+}
+.game .scroll {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.countdw{
+    font-size:150px;
+}
+
 /*---------------------------------------------------------------------------------------home */
 .fixed-outside{
     position: absolute;
@@ -31,4 +60,33 @@
 
 .home{
     background-color: lightgoldenrodyellow;
+}
+
+/*---------------------------------------------------------------------------------------config */
+.config{
+    background-color: lightgoldenrodyellow;
+}
+
+.config .scroll-content {
+    display: table !important;
+    width: 100% !important;
+    height: 100% !important;
+    margin-top: -50px; /* the height of the centered content */
+    text-align: center;
+}
+.config .scroll {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.timerconfig{
+    background-color: #33b5e5;
+    padding: 8px;
+    margin-bottom: 8px;
+}
+
+.cardconfig{
+    background-color: salmon;
+    padding: 8px;
+    margin-bottom: 8px;
 }

@@ -1,6 +1,7 @@
 angular.module('starter', ['ionic','starter.controllers', 'starter.services'])
 
     .run(function($ionicPlatform) {
+        
       $ionicPlatform.ready(function() {
         if(window.cordova && window.cordova.plugins.Keyboard) {
           cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true)
@@ -15,30 +16,30 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services'])
     .config(function($stateProvider, $urlRouterProvider) {
       $stateProvider
 
-          .state('home', {
-              url: '/home',
+          .state('accueil', {
+              url: '/accueil',
               templateUrl: 'templates/home.html'
           })  
           
           .state('jeu', {
-              url: '/game',
+              url: '/jeu',
               templateUrl: 'templates/game.html',
               controller: 'GameCtrl'
           })
 
-          .state('configuration', {
-          url: '/config',
+          .state('parametres', {
+          url: '/parametres',
           templateUrl: 'templates/config.html',
           controller: 'ConfigCtrl'
       })
 
-          .state('regle-du-jeu', {
-              url: '/rules',
+          .state('regles-du-jeu', {
+              url: '/regles-du-jeu',
               templateUrl: 'templates/rules.html'
           })
 
-          .state('list', {
-            url: '/list',
+          .state('categories', {
+            url: '/categories',
             templateUrl: 'templates/list.html',
             controller: 'ListCtrl'
           })
@@ -52,8 +53,17 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services'])
           },
       })
 
-          .state('listcards', {
-              url: '/liste-des-cartes/{id}',
+          .state('edition', {
+              url: '/{cid}-{cat}/{id}-{title}/edition',
+              templateUrl: 'templates/formcard.html',
+              controller: 'FormCardCtrl',
+              params: {
+                  id: {value: null},
+              },
+          })
+
+          .state('cartes', {
+              url: '/cartes/{id}-{cat}',
               templateUrl: 'templates/listcards.html',
               controller: 'CardCtrl',
               params: {
@@ -61,6 +71,6 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services'])
               },
           })
 
-      $urlRouterProvider.otherwise('/home')
+      $urlRouterProvider.otherwise('/accueil')
     })
 
