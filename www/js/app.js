@@ -44,9 +44,9 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services'])
             controller: 'ListCtrl'
           })
 
-          .state('form', {
-          url: '/form/{id}',
-          templateUrl: 'templates/form.html',
+          .state('creer', {
+          url: '/{cid}-{cat}/creer',
+          templateUrl: 'templates/formadd.html',
           controller: 'FormCtrl',
           params: {
               id: {value: null},

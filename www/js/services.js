@@ -16,7 +16,7 @@ angular.module('starter.services', ['ngCordova'])
         }
 
         function initDatabase(){
-            $cordovaSQLite.execute(db, 'CREATE TABLE IF NOT EXISTS cards (id integer primary key, title, category_id)')
+            $cordovaSQLite.execute(db, 'CREATE TABLE IF NOT EXISTS cards (id integer primary key, title, category_id integer)')
             $cordovaSQLite.execute(db, 'CREATE TABLE IF NOT EXISTS categories (id integer primary key, name)')
             $cordovaSQLite.execute(db, 'CREATE TABLE IF NOT EXISTS config (id integer primary key,name, value integer)')
             $cordovaSQLite.execute(db, 'INSERT INTO categories VALUES (1,"jeux video")')
@@ -46,12 +46,6 @@ angular.module('starter.services', ['ngCordova'])
         }
 
         return {
-            createNote: function (card) {
-                return $cordovaSQLite.execute(db, 'INSERT INTO cards (title, category_id) VALUES(?, ?)', [card.title, card.category_id])
-            },
-            updateNote: function(card){
-                return $cordovaSQLite.execute(db, 'UPDATE cards set title = ?, category_id = ? where id = ?', [card.title, card.category_id, card.id])
-            },
             getTimer: function(callback){
                 $ionicPlatform.ready(function () {
                     $cordovaSQLite.execute(db, 'SELECT value FROM config where name ="timer"').then(function (results) {
@@ -122,7 +116,6 @@ angular.module('starter.services', ['ngCordova'])
 
             getCatCards: function(id,callback){
                 var catconvert = parseInt(id);
-                console.log(id);
                 $ionicPlatform.ready(function () {
                     $cordovaSQLite.execute(db,'SELECT * FROM cards where category_id = ?', [catconvert]).then(function (results) {
                         var cards = []
@@ -138,7 +131,6 @@ angular.module('starter.services', ['ngCordova'])
 
 
             deleteCard: function(id){
-                console.log(id);
                 return $cordovaSQLite.execute(db, 'DELETE FROM cards where id = ?', [id])
             },
 
@@ -151,6 +143,9 @@ angular.module('starter.services', ['ngCordova'])
             },
             updateCard: function(card,cardId,cat){
                 return $cordovaSQLite.execute(db, 'UPDATE cards set title = ?, category_id = ? where id = ?', [card.title, cat, cardId])
+            },
+            createCard: function (card,cat) {
+                return $cordovaSQLite.execute(db, 'INSERT INTO cards (title, category_id) VALUES(?, ?)', [card.title, cat])
             },
 
         }

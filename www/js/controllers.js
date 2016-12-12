@@ -6,6 +6,7 @@ angular.module('starter.controllers', [])
 //Compte a rebours
             $timeout(function () {
                 $scope.showhide = 'show';
+                $scope.hidecountdown = 'hide';
                 change('start');
                 $scope.findsList =  [];
                 $timeout.cancel(mytimeout);
@@ -27,9 +28,10 @@ angular.module('starter.controllers', [])
             $scope.scoreLeft = 0;
             $scope.scoreRight = 0;
             $scope.team = 1;
-            $scope.round = 1;
-            var mytimeout = null;
+            $scope.turn = 1;
             var round = 0;
+            var mytimeout = null;
+
             change('error');
 // Scores
             $scope.valide = function(){
@@ -50,6 +52,11 @@ angular.module('starter.controllers', [])
                 round++;
                 change('error');
                 $scope.team =  (round % 2) + 1;
+                if ( $scope.team == 1 ){
+                    $scope.turn++;
+                }
+                $scope.hideready = 'show';
+                $timeout.cancel(mytimeout);
             };
 // Joueurs prêts
             $scope.ready = function(){
@@ -59,7 +66,14 @@ angular.module('starter.controllers', [])
                 CardsDataService.getTimer(function(data){
                     $scope.counter = data.value;
                 })
-                startTimer();
+                $scope.hideready = 'hide';
+                $scope.showhide = 'hide';
+                $scope.hidecountdown = 'show';
+                $timeout(function () {
+                    $scope.showhide = 'show';
+                    $scope.hidecountdown = 'hide';
+                    startTimer();
+                }, 4000);
             };
 
 // Afficher ou masquer les elements
@@ -88,6 +102,10 @@ angular.module('starter.controllers', [])
                     round++;
                     change('error');
                     $scope.team =  (round % 2) + 1;
+                    if ( $scope.team == 1 ){
+                        $scope.turn++;
+                    }
+                    $scope.hideready = 'show';
                     return;
                 }
                 $scope.counter--;
@@ -210,44 +228,20 @@ angular.module('starter.controllers', [])
     })
 
 
-    // ---------------------------------------------------------------------------- EDITER CATEGORIES
+    // ---------------------------------------------------------------------------- CREER CARTES
     .controller('FormCtrl', function ($scope, $stateParams, $ionicPopup, $state, CardsDataService,$ionicHistory) {
         $scope.$on('$ionicView.enter', function(e) {
-            initForm()
+            $scope.addForm = {}
+            CardsDataService.getCats(function(item){
+                $scope.allCats = item;
+                $scope.allCat = $scope.allCats[$stateParams.cid - 1];
+            })
         })
-
-        function initForm(){
-            if($stateParams.id){
-                CardsDataService.getById($stateParams.id, function(item){
-                    $scope.noteForm = item
-                })
-            } else {
-                $scope.noteForm = {}
-            }
-        }
         function onSaveSuccess(){
             $ionicHistory.backView().go();
         }
-        $scope.saveNote = function(){
-
-            if(!$scope.noteForm.id){
-                CardsDataService.createNote($scope.noteForm).then(onSaveSuccess)
-            } else {
-                CardsDataService.updateNote($scope.noteForm).then(onSaveSuccess)
-            }
-        }
-
-        $scope.confirmDelete = function(idNote) {
-            var confirmPopup = $ionicPopup.confirm({
-                title: 'Supprimer une catégorie',
-                template: 'êtes vous sûr de vouloir supprimer ?'
-            })
-
-            confirmPopup.then(function(res) {
-                if(res) {
-                    CardsDataService.deleteNote(idNote).then(onSaveSuccess)
-                }
-            })
+        $scope.addCard = function(allCat){
+                CardsDataService.createCard($scope.addForm,allCat).then(onSaveSuccess)
         }
     })
 
@@ -266,6 +260,10 @@ angular.module('starter.controllers', [])
         $scope.viewCat = function(idCat){
             $state.go('listcards', {id: idCat})
         }
+
+        $scope.addForm = function(){
+            $state.go('creer', {cid:$stateParams.id,cat: $stateParams.cat})
+        }
     })
 
     // ---------------------------------------------------------------------------- EDITER CARTES
@@ -281,7 +279,7 @@ angular.module('starter.controllers', [])
                 })
                 CardsDataService.getCats(function(item){
                     $scope.allCats = item;
-                    $scope.allCat = $scope.allCats[0];
+                    $scope.allCat = $scope.allCats[$stateParams.cid - 1];
                 })
 
             } else {
@@ -294,7 +292,7 @@ angular.module('starter.controllers', [])
         $scope.saveNote = function(cardId,allCat){
 
             if(!$scope.cardForm.id){
-                CardsDataService.createNote($scope.cardForm).then(onSaveSuccess)
+                CardsDataService.createCard($scope.cardForm).then(onSaveSuccess)
             } else {
                 CardsDataService.updateCard($scope.cardForm,cardId,allCat).then(onSaveSuccess)
             }
