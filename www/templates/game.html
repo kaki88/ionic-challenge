@@ -1,9 +1,9 @@
 <ion-view view-title="Manche  {{round}}" class="game">
-    <ion-content class="has-footer">
+    <ion-content scroll="false" class="has-footer">
 
-        <div class="row row-no-padding">
+        <div class="row row-no-padding" ng-class="hidecountdown" >
             <div class="col">
-                <div class="text-center">
+                <div class="text-center valign">
                     <div class="countdw animated zoomIn">
                         3
                     </div>
@@ -20,48 +20,50 @@
 
         <div class="hide"  ng-class="showhide">
             <div class="row row-no-padding">
-                <div class="team-left col-40">Equipe 1<br>
+                <div class="team-left col-50">Equipe 1<br>
                     {{scoreLeft}}
                 </div>
-                <div class="col-20">
-                    {{counter}}
-                    <button ng-click='waitTimer()'>Pause</button>
-                    <button ng-click='restartTimer()'>Reprendre</button>
-                </div>
-                <div class="team-right col-40 text-right">Equipe 2<br>
+                <div class="team-right col-50 text-right">Equipe 2<br>
                     {{scoreRight}}
                 </div>
             </div>
 
             <div class="{{roundEnd()}}">
-                <div class="card" style="height: 50vh">
+                <div class="turn">
+                    Tour {{turn}} : {{findsList.length}} cartes trouvées
+                </div>
+
                     <div class="item" ng-repeat="find in findsList">
                         {{find.title}}
                     </div>
-                </div>
-                <div> A toi équipe {{team}}</div>
-                <div class="button button-block button-positive" ng-click="ready()">
-                    <i class="icon ion-plus-circled"></i> PRET
-                </div>
+
             </div>
 
             <div class="{{roundStart()}}">
-                <div class="card" ng-repeat="item in cardsList track by $index" ng-show="$index == indexToShow">
-
-                    <div class="item" style="height: 50vh">
+                <div class="text-center">
+                    {{counter}}
+                    <!--<button ng-click='restartTimer()'>Reprendre</button>-->
+                </div>
+                <div  ng-repeat="item in cardsList track by $index" ng-show="$index == indexToShow" class="chat-item item-remove-animate" >
+                    <div class="word valign text-center animated flipInY chat-item item-remove-animate" >
                         {{item.title}}
                     </div>
-                </div>
-
-                <div class="button button-block button-positive" ng-click="valide()">
-                    <i class="icon ion-plus-circled"></i> VALIDER
-                </div>
-
-                <div class="button button-block button-dark" ng-click="error()">
-                    <i class="icon ion-minus-circled"></i> FAUTE DE JEU
                 </div>
             </div>
 
         </div>
     </ion-content>
+
+
+    <div class="bar bar-footer bar-assertive hide " ng-class="showhide">
+        <button class="button icon ion-close" ng-click="error()">FAUTE</button>
+        <button class="button icon ion-close" ng-click='waitTimer()'>PAUSE</button>
+        <button class="button icon ion-checkmark-round pull-right" ng-click="valide()">VALIDER</button>
+    </div>
+
+    <div class="bar bar-footer bar-assertive hide"  ng-class="hideready">
+        A votre tour: équipe {{team}}
+        <button class="button icon ion-checkmark-round pull-right" ng-click="ready()"> PRET </button>
+    </div>
+
 </ion-view>

@@ -1,0 +1,17 @@
+<ion-view view-title="Créer une carte">
+    <ion-content>
+        <div class="list">
+            <label class="item item-input">
+                <input type="text" placeholder="Titre de la carte" ng-model="addForm.title">
+            </label>
+            <label class="item item-input">
+                <select ng-model="allCat" ng-options="obj.name for obj in allCats track by obj.id"></select>
+            </label>
+        </div>
+
+        <button class="button button-full button-positive " ng-click="addCard(allCat.id)">
+            Sauvegarder
+        </button>
+
+    </ion-content>
+</ion-view>
