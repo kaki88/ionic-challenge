@@ -3,6 +3,17 @@ angular.module('starter.controllers', [])
 // ----------------------------------------------------------------------------JEU
     .controller('GameCtrl', function ($scope,$ionicPlatform, $state,$timeout, CardsDataService) {
         $scope.$on('$ionicView.enter', function(e) {
+//Compte a rebours
+            $timeout(function () {
+                $scope.showhide = 'show';
+                change('start');
+                $scope.findsList =  [];
+                $timeout.cancel(mytimeout);
+                CardsDataService.getTimer(function(data){
+                    $scope.counter = data.value;
+                })
+                startTimer();
+            }, 4000);
 //Initialisation des paramètres
             CardsDataService.getCards(function(data){
                 $scope.cardsList = data;
@@ -16,6 +27,7 @@ angular.module('starter.controllers', [])
             $scope.scoreLeft = 0;
             $scope.scoreRight = 0;
             $scope.team = 1;
+            $scope.round = 1;
             var mytimeout = null;
             var round = 0;
             change('error');
@@ -122,7 +134,6 @@ angular.module('starter.controllers', [])
         })
 
         $scope.changeTimer = function(val){
-
             $scope.data = { time: val}
             var myPopup = $ionicPopup.show({
                 template: '<input type = "number" ng-model = "data.time">',
@@ -131,16 +142,12 @@ angular.module('starter.controllers', [])
                 scope: $scope,
 
                 buttons: [
-                    { text: 'Annuler' }, {
+                   {
                         text: '<b>Valider</b>',
                         type: 'button-positive',
                         onTap: function(e) {
-
-                            if (!$scope.data.time) {
-                                e.preventDefault();
-                            } else {
+                                $scope.timerConfig = $scope.data.time;
                                 return $scope.data.time;
-                            }
                         }
                     }
                 ]
@@ -152,7 +159,6 @@ angular.module('starter.controllers', [])
         };
 
         $scope.changeCard = function(val){
-
             $scope.data = { card: val}
             var myPopup = $ionicPopup.show({
                 template: '<input type = "number" ng-model = "data.card">',
@@ -161,16 +167,12 @@ angular.module('starter.controllers', [])
                 scope: $scope,
 
                 buttons: [
-                    { text: 'Annuler' }, {
+                    {
                         text: '<b>Valider</b>',
                         type: 'button-positive',
                         onTap: function(e) {
-
-                            if (!$scope.data.card) {
-                                e.preventDefault();
-                            } else {
+                            $scope.cardConfig = $scope.data.card;
                                 return $scope.data.card;
-                            }
                         }
                     }
                 ]
@@ -203,13 +205,13 @@ angular.module('starter.controllers', [])
         }
 
         $scope.viewCat = function(idCat){
-            $state.go('listcards', {id: idCat})
+            $state.go('cartes', {id: idCat.id, cat: idCat.name})
         }
     })
 
 
     // ---------------------------------------------------------------------------- EDITER CATEGORIES
-    .controller('FormCtrl', function ($scope, $stateParams, $ionicPopup, $state, CardsDataService) {
+    .controller('FormCtrl', function ($scope, $stateParams, $ionicPopup, $state, CardsDataService,$ionicHistory) {
         $scope.$on('$ionicView.enter', function(e) {
             initForm()
         })
@@ -224,7 +226,7 @@ angular.module('starter.controllers', [])
             }
         }
         function onSaveSuccess(){
-            $state.go('list')
+            $ionicHistory.backView().go();
         }
         $scope.saveNote = function(){
 
@@ -256,9 +258,9 @@ angular.module('starter.controllers', [])
                 $scope.itemsList = cards
             })
         })
-
-        $scope.gotoEdit = function(idNote){
-            $state.go('form', {id: idNote})
+        $scope.title  = $stateParams.cat;
+            $scope.gotoEditCard = function(obj){
+            $state.go('edition', {cid:$stateParams.id,cat:$stateParams.cat,id: obj.id,title: obj.title})
         }
 
         $scope.viewCat = function(idCat){
@@ -266,34 +268,39 @@ angular.module('starter.controllers', [])
         }
     })
 
-    // ----------------------------------------------------------------------------EDITER CARTES
-    .controller('ListCardsCtrl', function ($scope, $stateParams, $ionicPopup, $state, CardsDataService) {
+    // ---------------------------------------------------------------------------- EDITER CARTES
+    .controller('FormCardCtrl', function ($scope, $stateParams, $ionicPopup, $state,$ionicHistory, CardsDataService) {
         $scope.$on('$ionicView.enter', function(e) {
             initForm()
         })
 
         function initForm(){
             if($stateParams.id){
-                CardsDataService.getById($stateParams.id, function(item){
-                    $scope.noteForm = item
+                CardsDataService.getCardById($stateParams.id, function(item){
+                    $scope.cardForm = item;
                 })
+                CardsDataService.getCats(function(item){
+                    $scope.allCats = item;
+                    $scope.allCat = $scope.allCats[0];
+                })
+
             } else {
-                $scope.noteForm = {}
+                $scope.cardForm = {}
             }
         }
         function onSaveSuccess(){
-            $state.go('list')
+            $ionicHistory.backView().go();
         }
-        $scope.saveNote = function(){
+        $scope.saveNote = function(cardId,allCat){
 
-            if(!$scope.noteForm.id){
-                CardsDataService.createNote($scope.noteForm).then(onSaveSuccess)
+            if(!$scope.cardForm.id){
+                CardsDataService.createNote($scope.cardForm).then(onSaveSuccess)
             } else {
-                CardsDataService.updateNote($scope.noteForm).then(onSaveSuccess)
+                CardsDataService.updateCard($scope.cardForm,cardId,allCat).then(onSaveSuccess)
             }
         }
 
-        $scope.confirmDelete = function(idNote) {
+        $scope.confirmDelete = function(idCard) {
             var confirmPopup = $ionicPopup.confirm({
                 title: 'Supprimer une carte',
                 template: 'êtes vous sûr de vouloir supprimer ?'
@@ -301,7 +308,7 @@ angular.module('starter.controllers', [])
 
             confirmPopup.then(function(res) {
                 if(res) {
-                    CardsDataService.deleteNote(idNote).then(onSaveSuccess)
+                    CardsDataService.deleteCard(idCard).then(onSaveSuccess)
                 }
             })
         }

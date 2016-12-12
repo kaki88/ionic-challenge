@@ -1,0 +1,25 @@
+<ion-view view-title="Edition d'une carte">
+    <ion-content>
+        <div class="list">
+            <label class="item item-input">
+                <input type="text" placeholder="Titre de la carte" ng-model="cardForm.title">
+            </label>
+            <label class="item item-input">
+                <select ng-model="allCat" ng-options="obj.name for obj in allCats track by obj.id"></select>
+            </label>
+        </div>
+
+        <button ng-show="!cardForm.id" class="button button-full button-positive ng-hide" ng-click="saveNote()">
+            Sauvegarder
+        </button>
+
+        <div ng-show="cardForm.id" class="button-bar">
+            <a class="button button-assertive" ng-click="confirmDelete(cardForm.id)">
+                <i class="icon ion-trash-b"></i>
+            </a>
+            <a class="button button-positive" ng-click="saveNote(cardForm.id, allCat.id)">
+                <i class="icon ion-checkmark"></i>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>

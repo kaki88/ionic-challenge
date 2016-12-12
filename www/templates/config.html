@@ -1,15 +1,29 @@
-<ion-view view-title="Paramètres du jeu">
-    <ion-content >
+<ion-view view-title="Paramètres du jeu" class="config">
+    <ion-content class="has-footer">
+        <div class="row row-no-padding">
+            <div class="col">
+                <div class="text-center">
 
-        <div class="item" ng-click='changeTimer(timerConfig)'>
-       <span>Minuteur</span>
-            <span class="right"> {{timerConfig}}</span>
+        <div class="timerconfig" ng-click='changeTimer(timerConfig)'>
+       <span>Minuteur (en secondes) : {{timerConfig}} </span>
         </div>
 
-        <div class="item" ng-click='changeCard(cardConfig)'>
-            <span>Nombre de Cartes</span>
-            <span class="right"> {{cardConfig}}</span>
+        <div class="cardconfig" ng-click='changeCard(cardConfig)'>
+            <span>Nombre de Cartes :  {{cardConfig}}</span>
         </div>
+
+            </div>
+        </div>
+        </div>
+
+        <div class="bar bar-footer bar-balanced footer-buttons">
+            <div class="row">
+                <div class="col">
+                    <a class="button button-balanced" href="#/jeu"> Démarrer la partie</a>
+                </div>
+            </div>
+        </div>
+
 
     </ion-content>
 </ion-view>
