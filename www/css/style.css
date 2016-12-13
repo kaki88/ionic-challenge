@@ -1,3 +1,17 @@
+@font-face {
+    font-family: 'Bangers';
+    font-style: normal;
+    font-weight: 400;
+    src:  url('../fonts/bang.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Russo One';
+    font-style: normal;
+    font-weight: 400;
+    src:  url('../fonts/russo.woff2') format('woff2');
+}
+
 /*---------------------------------------------------------------------------------------general */
 .right{
     float: right;
@@ -18,19 +32,59 @@
 }
 
 .valign{
-    margin-top: 30vh;
-}
+     margin-top: 30vh;
+ }
+
+
+
 /*---------------------------------------------------------------------------------------game */
 .team-left{
     background-color: blue;
     color: white;
     padding: 5px;
+    width: 48vw;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 20px;
 }
 
 .team-right{
     background-color: green;
     color: white;
     padding: 5px;
+    width: 48vw;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 20px;
+    right: 0;
+    position: absolute;
+}
+
+.scrlft{
+    padding-right: 8px;
+    font-size: larger;
+}
+
+.scrrght{
+    padding-left: 12px;
+    font-size: larger;
+}
+
+.team{
+    font-size: medium;
+}
+
+.counter{
+    font-size: x-large;
+    background-image: url('../img/chrono.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    height: 20vh;
+    width: 25vw;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    color: greenyellow;
+    line-height: 20vh;
 }
 
 .game{
@@ -45,6 +99,7 @@
     background-color: white;
     padding: 10px;
     width: 80vw;
+    margin-top: 20vw;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -70,9 +125,31 @@
 }
 
 .home{
-    background-color: lightgoldenrodyellow;
+    background-image: url("../img/bg.jpg");
+    background-size: cover;
 }
 
+.titlemenu{
+    font-size: 50px;
+    font-weight: bold;
+    font-family: 'Bangers', cursive;
+    margin: 100px;
+    color: #11c1f3;
+    text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000,
+    -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+
+}
+
+.bt-home{
+    width: 100%;
+    border-radius: 0!important;
+    text-transform: uppercase;
+    font-family: 'Russo One', sans-serif;
+}
+
+.bt-home i:before {
+    font-size: 44px !important;
+}
 /*---------------------------------------------------------------------------------------config */
 .config{
     background-color: lightgoldenrodyellow;

@@ -1,4 +1,4 @@
-<ion-view view-title="Manche  {{round}}" class="game">
+<ion-view view-title="Manche 1" class="game">
     <ion-content scroll="false" class="has-footer">
 
         <div class="row row-no-padding" ng-class="hidecountdown" >
@@ -20,11 +20,11 @@
 
         <div class="hide"  ng-class="showhide">
             <div class="row row-no-padding">
-                <div class="team-left col-50">Equipe 1<br>
-                    {{scoreLeft}}
+                <div class="team-left"><span class="team">Equipe 1</span>
+                    <span class="right scrlft">    {{scoreLeft}} </span>
                 </div>
-                <div class="team-right col-50 text-right">Equipe 2<br>
-                    {{scoreRight}}
+                <div class="team-right scrrght">{{scoreRight}}
+                  <span class="right team ">Equipe 2</span>
                 </div>
             </div>
 
@@ -40,12 +40,12 @@
             </div>
 
             <div class="{{roundStart()}}">
-                <div class="text-center">
+                <div class="text-center counter">
                     {{counter}}
                     <!--<button ng-click='restartTimer()'>Reprendre</button>-->
                 </div>
-                <div  ng-repeat="item in cardsList track by $index" ng-show="$index == indexToShow" class="chat-item item-remove-animate" >
-                    <div class="word valign text-center animated flipInY chat-item item-remove-animate" >
+                <div  ng-repeat="item in cardsList track by $index" ng-show="$index == indexToShow" >
+                    <div class="word text-center animated flipInY" >
                         {{item.title}}
                     </div>
                 </div>
