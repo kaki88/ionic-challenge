@@ -1,22 +1,44 @@
-<ion-view view-title="Accueil" class="home">
-    <ion-content >
+<ion-view view-title="Menu" class="home">
+    <ion-content scroll="false">
 
-
-
+        <div class="row row-no-padding">
+            <div class="col">
+                <div class="text-center valign animated rotateIn">
+                    <span class="titlemenu"> Words </span><br>
+                    <br><span class="titlemenu">Challenge</span>
+                </div>
+            </div>
+        </div>
 
     </ion-content>
     <div class="row row-wrap row-no-padding fixed-outside">
-        <a href="#/parametres" class="col col-50 button  button-calm animated bounceInLeft bt-home">
-            <i class="icon ion-arrow-right-b"></i> <br><span class="bold"> JOUER</span>
-        </a>
+        <div class="row row-no-padding">
+            <div class="col">
+                <a href="#/categories" class="button  button-balanced animated fadeInLeft bt-home">
+                    <i class="icon ion-ios-list-outline"></i> <br><span class="bold"> Cartes</span>
+                </a>
+            </div>
+            <div class="col">
+                <a href="#/regles-du-jeu" class=" button  button-assertive animated fadeInDown bt-home">
+                    <i class="icon ion-ios-bookmarks-outline"></i> <br><span class="bold"> Règles</span>
+                </a>
+            </div>
+            <div class="col">
+                <a href="#/regles-du-jeu" class=" button  button-royal animated fadeInRight bt-home">
+                    <i class="icon ion-ios-information-outline"></i> <br><span class="bold"> A propos</span>
+                </a>
+            </div>
+        </div>
 
-        <a href="#/categories" class="col col-50 button  button-balanced animated bounceInDown">
-            <i class="icon ion-ios-list"></i> <br><span class="bold"> CARTES</span>
-        </a>
+        <div class="row row-no-padding">
+            <div class="col">
+                <a href="#/parametres" class=" button  button-calm animated fadeInUp bt-home">
+                    <i class="icon ion-ios-play-outline"></i> <br><span class="bold"> Démarrer une partie</span>
+                </a>
+            </div>
+        </div>
 
-        <a href="#/regles-du-jeu" class="col col-50 button  button-assertive animated bounceInRight">
-            <i class="icon ion-ios-book"></i> <br><span class="bold"> REGLES</span>
-        </a>
+
     </div>
 
 </ion-view>
