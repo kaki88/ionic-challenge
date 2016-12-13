@@ -1,17 +1,17 @@
-<ion-view view-title="Manche 1" class="game">
+<ion-view view-title="Manche 1" class="home" hide-nav-bar="true">
     <ion-content scroll="false" class="has-footer">
 
         <div class="row row-no-padding" ng-class="hidecountdown" >
             <div class="col">
                 <div class="text-center valign">
                     <div class="countdw animated zoomIn">
-                        3
+                        Attention
                     </div>
                     <div class="countdw animated zoomIn2">
-                        2
+                      Prêt
                     </div>
                     <div class="countdw animated zoomIn3">
-                        1
+                       Parlez
                     </div>
                 </div>
             </div>
@@ -28,21 +28,29 @@
                 </div>
             </div>
 
+
+            <div class="hide endmsg" ng-class="end">
+                {{endmsg}}
+            </div>
+
             <div class="{{roundEnd()}}">
-                <div class="turn">
-                    Tour {{turn}} : {{findsList.length}} cartes trouvées
+                <div class="find">
+                    <span>Tour {{turn}}</span>
+                    <span class="right">  + {{findsList.length}} point<span ng-if="findsList.length > 1">s</span> </span>
                 </div>
 
-                    <div class="item" ng-repeat="find in findsList">
+                    <div class="findlist" ng-repeat="find in findsList">
                         {{find.title}}
                     </div>
+                <div class="findlist text-center" ng-if="findsList.length == 0">
+                   Aucune carte trouvée sur ce tour
+                </div>
 
             </div>
 
             <div class="{{roundStart()}}">
                 <div class="text-center counter">
                     {{counter}}
-                    <!--<button ng-click='restartTimer()'>Reprendre</button>-->
                 </div>
                 <div  ng-repeat="item in cardsList track by $index" ng-show="$index == indexToShow" >
                     <div class="word text-center animated flipInY" >
@@ -50,20 +58,68 @@
                     </div>
                 </div>
             </div>
-
         </div>
+
+
+
     </ion-content>
 
-
-    <div class="bar bar-footer bar-assertive hide " ng-class="showhide">
-        <button class="button icon ion-close" ng-click="error()">FAUTE</button>
-        <button class="button icon ion-close" ng-click='waitTimer()'>PAUSE</button>
-        <button class="button icon ion-checkmark-round pull-right" ng-click="valide()">VALIDER</button>
+    <div class="row row-wrap row-no-padding fixed-outside hide" ng-class="showhide">
+        <div class="row row-no-padding">
+            <div class="col" >
+                <button class="button button-energized icon ion-pause bt-home" ng-click='waitTimer()'> Pause</button>
+            </div>
+            <div class="col" >
+                <button class="button button-assertive icon ion-android-close bt-home" ng-click="error()"> Faute</button>
+            </div>
+        </div>
+        <div class="row row-no-padding">
+            <div class="col">
+                <button class="button button-balanced icon ion-checkmark-round pull-right bt-home" ng-click="valide()"> Trouvé</button>
+            </div>
+        </div>
     </div>
 
-    <div class="bar bar-footer bar-assertive hide"  ng-class="hideready">
-        A votre tour: équipe {{team}}
-        <button class="button icon ion-checkmark-round pull-right" ng-click="ready()"> PRET </button>
+    <div class="row row-wrap row-no-padding fixed-outside hide" ng-class="hideready">
+        <div class="row row-no-padding">
+            <div class="col turn" >
+                <span>A vous de jouer:  équipe {{team}}</span>
+            </div>
+        </div>
+        <div class="row row-no-padding">
+            <div class="col">
+                <a href="#/jeu" class=" button button-balanced bt-home" ng-click="ready()">
+                    <span class="bold">PRET !</span>
+                </a>
+            </div>
+        </div>
     </div>
+
+    <div class="row row-wrap row-no-padding fixed-outside hide" ng-class="theend">
+        <div class="row row-no-padding">
+            <div class="col turn" >
+                <span>Félicitations équipe {{team}}</span>
+            </div>
+        </div>
+        <div class="row row-no-padding">
+            <div class="col">
+                <button  class=" button button-assertive bt-home" ng-click="exit()">
+                    <span class="bold">QUITTER </span>
+                </button>
+            </div>
+            <div class="col">
+                <button class=" button button-energized bt-home" ng-click="gotomenu()">
+                    <span class="bold">MENU </span>
+                </button>
+            </div>
+            <div class="col">
+                <button  class=" button button-balanced bt-home" ng-click="replay()">
+                    <span class="bold">REJOUER </span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
 
 </ion-view>

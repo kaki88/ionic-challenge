@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
 // ----------------------------------------------------------------------------JEU
-    .controller('GameCtrl', function ($scope,$ionicPlatform, $state,$timeout, CardsDataService) {
+    .controller('GameCtrl', function ($scope,$ionicPlatform, $state,$timeout,$ionicPopup, CardsDataService) {
         $scope.$on('$ionicView.enter', function(e) {
 //Compte a rebours
             $timeout(function () {
@@ -18,6 +18,8 @@ angular.module('starter.controllers', [])
 //Initialisation des paramètres
             CardsDataService.getCards(function(data){
                 $scope.cardsList = data;
+            })
+            CardsDataService.getCards(function(data){
                 $scope.cardsListround2 = data;
             })
             CardsDataService.getTimer(function(data){
@@ -29,6 +31,7 @@ angular.module('starter.controllers', [])
             $scope.scoreRight = 0;
             $scope.team = 1;
             $scope.turn = 1;
+            var party = 1;
             var round = 0;
             var mytimeout = null;
 
@@ -37,6 +40,7 @@ angular.module('starter.controllers', [])
             $scope.valide = function(){
                 $scope.findsList.push($scope.cardsList[0]);
                 $scope.cardsList.splice(0,1);
+                console.log($scope.cardsList);
                 if (round % 2 == 1) {
                     $scope.scoreRight++;
                 }
@@ -44,7 +48,21 @@ angular.module('starter.controllers', [])
                     $scope.scoreLeft++;
                 }
                 if ($scope.cardsList.length < 1){
-                    console.log('terminé');
+                    $timeout.cancel(mytimeout);
+                    change('error');
+                    $scope.end = 'show';
+                    $scope.hideready = 'show';
+                    $scope.cardsList= $scope.cardsListround2;
+                    if ( party == 1 ){
+                        $scope.endmsg = 'Fin de la 1ère manche';
+                        party++;
+                        round++;
+                        $scope.team =  (round % 2) + 1;
+                    }
+                    else{
+                        $scope.endmsg = 'Fin de la partie';
+                        $scope.theend = 'show';
+                    }
                 }
             };
 // Faute de jeu
@@ -60,6 +78,9 @@ angular.module('starter.controllers', [])
             };
 // Joueurs prêts
             $scope.ready = function(){
+                if ( party == 2 ){
+                    $scope.end = 'hide';
+                }
                 change('start');
                 $scope.findsList =  [];
                 $timeout.cancel(mytimeout);
@@ -94,9 +115,14 @@ angular.module('starter.controllers', [])
                     }
                 }
             }
-
+// Chrono
             $scope.onTimeout = function() {
                 if($scope.counter ===  0) {
+
+
+                    var media = new Media(src, null, null, mediaStatusCallback);
+                    $cordovaMedia.play(media);
+                    
                     $scope.$broadcast('timer-stopped', 0);
                     $timeout.cancel(mytimeout);
                     round++;
@@ -111,33 +137,42 @@ angular.module('starter.controllers', [])
                 $scope.counter--;
                 mytimeout = $timeout($scope.onTimeout, 1000);
             };
-
-            $scope.waitTimer = function() {
+// Pause
+            $scope.waitTimer = function(){
                 $timeout.cancel(mytimeout);
-            };
+                var myPopup = $ionicPopup.show({
+                    title: 'Jeu en Pause',
 
-            $scope.restartTimer = function() {
-                startTimer();
+                    buttons: [
+                        {
+                            text: '<b>Reprendre la Partie</b>',
+                            type: 'button-positive',
+                            onTap: function(e) {
+                                startTimer();
+                            }
+                        }
+                    ]
+                });
             };
-
+// Demarrer chrono
             function startTimer() {
                 mytimeout = $timeout($scope.onTimeout, 1000);
             };
-
-            // temps écoulé
-            $scope.$on('timer-stopped', function(event, remaining) {
-                if(remaining === 0) {
-
-
-                }
-            });
-
-
+// Rejouer
+            $scope.replay = function() {
+                $state.go('parametres');
+                location.reload();
+            };
+ // Retour menu
+            $scope.gotomenu = function() {
+                $state.go('accueil');
+                location.reload();
+            };
+ // Quitter
+            $scope.exit = function() {
+                ionic.Platform.exitApp();
+            };
         })
-
-        $scope.gotoEdit = function(idNote){
-            $state.go('form', {id: idNote})
-        }
     })
 
     // ----------------------------------------------------------------------------CONFIGURATION
@@ -217,10 +252,6 @@ angular.module('starter.controllers', [])
                 $scope.catsList = data
             })
         })
-
-        $scope.gotoEdit = function(idNote){
-            $state.go('form', {id: idNote})
-        }
 
         $scope.viewCat = function(idCat){
             $state.go('cartes', {id: idCat.id, cat: idCat.name})

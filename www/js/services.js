@@ -69,7 +69,7 @@ angular.module('starter.services', ['ngCordova'])
             getCards: function(callback){
                 $ionicPlatform.ready(function () {
                     $cordovaSQLite.execute(db, 'SELECT value FROM config where name ="card"').then(function (results) {
-                        var res = results.rows[0];
+                        var res = results.rows.item(0);
                         var number = res.value;
                         $cordovaSQLite.execute(db, 'SELECT * FROM cards  LIMIT ?', [number]).then(function (results) {
                             var data = []
@@ -86,7 +86,7 @@ angular.module('starter.services', ['ngCordova'])
             getAll: function(callback){
                 $ionicPlatform.ready(function () {
                     $cordovaSQLite.execute(db, 'SELECT value FROM config where name ="card"').then(function (results) {
-                        var res = results.rows[0];
+                        var res = results.rows.item(0);
                         var number = res.value;
                         $cordovaSQLite.execute(db, 'SELECT * FROM cards  LIMIT ?', [number]).then(function (results) {
                             var data = []
