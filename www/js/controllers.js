@@ -1,8 +1,46 @@
 angular.module('starter.controllers', [])
 
 // ----------------------------------------------------------------------------JEU
-    .controller('GameCtrl', function ($scope,$ionicPlatform, $state,$timeout,$ionicPopup, CardsDataService) {
+    .controller('GameCtrl', function ($scope,$ionicPlatform, $state,$timeout,$ionicPopup, CardsDataService,$cordovaNativeAudio) {
+        if(window.cordova){
+        $ionicPlatform.ready(function() {
+// Audio
+            $cordovaNativeAudio
+                .preloadSimple('load', 'files/countdown.mp3')
+                .then(function (msg) {
+                    console.log(msg);
+                }, function (error) {
+                    console.log(error);
+                });
+            $cordovaNativeAudio.preloadComplex('load', 'files/countdown.mp3', 1, 1)
+                .then(function (msg) {
+                    console.log(msg);
+                }, function (error) {
+                    console.error(error);
+                });
+            $cordovaNativeAudio
+                .preloadSimple('go', 'files/321.mp3')
+                .then(function (msg) {
+                    console.log(msg);
+                }, function (error) {
+                    console.log(error);
+                });
+            $cordovaNativeAudio.preloadComplex('go', 'files/321.mp3', 1, 1)
+                .then(function (msg) {
+                    console.log(msg);
+                }, function (error) {
+                    console.error(error);
+                });
+
+        });
+        }
         $scope.$on('$ionicView.enter', function(e) {
+                if(window.cordova) {
+                    $cordovaNativeAudio.play('go');
+                }else{
+                    $scope.audio = new Audio('../files/321.mp3');
+                    $scope.audio.play();
+                }
 //Compte a rebours
             $timeout(function () {
                 $scope.showhide = 'show';
@@ -14,7 +52,7 @@ angular.module('starter.controllers', [])
                     $scope.counter = data.value;
                 })
                 startTimer();
-            }, 4000);
+            }, 2300);
 //Initialisation des paramètres
             CardsDataService.getCards(function(data){
                 $scope.cardsList = data;
@@ -34,7 +72,6 @@ angular.module('starter.controllers', [])
             var party = 1;
             var round = 0;
             var mytimeout = null;
-
             change('error');
 // Scores
             $scope.valide = function(){
@@ -78,6 +115,14 @@ angular.module('starter.controllers', [])
             };
 // Joueurs prêts
             $scope.ready = function(){
+                $timeout(function () {
+                if(window.cordova) {
+                    $cordovaNativeAudio.play('go');
+                }else{
+                $scope.audio = new Audio('../files/321.mp3');
+                $scope.audio.play();
+                }
+                }, 300);
                 if ( party == 2 ){
                     $scope.end = 'hide';
                 }
@@ -94,7 +139,7 @@ angular.module('starter.controllers', [])
                     $scope.showhide = 'show';
                     $scope.hidecountdown = 'hide';
                     startTimer();
-                }, 4000);
+                }, 2300);
             };
 
 // Afficher ou masquer les elements
@@ -117,12 +162,17 @@ angular.module('starter.controllers', [])
             }
 // Chrono
             $scope.onTimeout = function() {
+                if(window.cordova){
+                if($scope.counter ===  8) {
+                    $cordovaNativeAudio.play('load');
+                }
+                } else {
+                    if($scope.counter ===  7) {
+                        $scope.audio = new Audio('../files/countdown.mp3');
+                        $scope.audio.play();
+                    }
+                }
                 if($scope.counter ===  0) {
-
-
-                    var media = new Media(src, null, null, mediaStatusCallback);
-                    $cordovaMedia.play(media);
-                    
                     $scope.$broadcast('timer-stopped', 0);
                     $timeout.cancel(mytimeout);
                     round++;
@@ -342,3 +392,25 @@ angular.module('starter.controllers', [])
             })
         }
     })
+
+
+
+    // ---------------------------------------------------------------------------- ACCUEIL
+    .controller('Home', function ($scope, $ionicPopup) {
+$scope.about = function(){
+var myPopup = $ionicPopup.show({
+        title: 'Version 2016.12.14',
+    template:'<div>Auteur: PERRIN Olivier</div>' +
+    '<div>Support: perrinolivier88@gmail.com</div>',
+    buttons: [
+            {
+                text: '<b>Ok</b>',
+                type: 'button-positive',
+                onTap: function(e) {
+                    myPopup.close();
+                }
+            }
+        ]
+    });
+};
+})
