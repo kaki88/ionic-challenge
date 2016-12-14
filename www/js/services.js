@@ -68,19 +68,22 @@ angular.module('starter.services', ['ngCordova'])
             },
             getCards: function(callback){
                 $ionicPlatform.ready(function () {
-                    $cordovaSQLite.execute(db, 'SELECT value FROM config where name ="card"').then(function (results) {
-                        var res = results.rows.item(0);
-                        var number = res.value;
-                        $cordovaSQLite.execute(db, 'SELECT * FROM cards  LIMIT ?', [number]).then(function (results) {
+                        $cordovaSQLite.execute(db, 'SELECT * FROM cards ').then(function (results) {
                             var data = []
-
                             for (i = 0, max = results.rows.length; i < max; i++) {
                                 data.push(results.rows.item(i))
                             }
-
                             callback(data)
                         }, onErrorQuery)
-                    })
+                })
+            },
+            getCardsnumber: function(callback){
+                $ionicPlatform.ready(function () {
+                    $cordovaSQLite.execute(db, 'SELECT value FROM config where name ="card"').then(function (results) {
+                        var res = results.rows.item(0);
+                        var number = res.value;
+                        callback(number)
+                    }, onErrorQuery)
                 })
             },
             getAll: function(callback){
@@ -146,6 +149,9 @@ angular.module('starter.services', ['ngCordova'])
             },
             createCard: function (card,cat) {
                 return $cordovaSQLite.execute(db, 'INSERT INTO cards (title, category_id) VALUES(?, ?)', [card.title, cat])
+            },
+            addCat: function (cat) {
+                return $cordovaSQLite.execute(db, 'INSERT INTO categories (name) VALUES(?)', [cat.cat])
             },
 
         }

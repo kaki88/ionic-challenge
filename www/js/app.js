@@ -44,7 +44,7 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services'])
             templateUrl: 'templates/list.html',
             controller: 'ListCtrl'
           })
-
+          
           .state('creer', {
           url: '/{cid}-{cat}/creer',
           templateUrl: 'templates/formadd.html',

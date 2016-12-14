@@ -224,10 +224,24 @@
 /*---------------------------------------------------------------------------------------liste catégories */
 .listcat{
     background-color: #939ba5;
+    text-transform: capitalize;
+}
+
+.title{
+    text-transform: capitalize;
 }
 
 .catlistitem{
     text-transform: capitalize;
-    margin: 4px;
-    padding: 3px!important;
+    margin: 3px;
+    padding: 5px!important;
+}
+
+.formtitle{
+    margin: 5px;
+    width: 30vw;
+}
+
+.addbt{
+    margin: 0!important;
 }
