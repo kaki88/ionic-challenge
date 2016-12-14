@@ -54,11 +54,14 @@ angular.module('starter.controllers', [])
                 startTimer();
             }, 2300);
 //Initialisation des paramètres
-            CardsDataService.getCards(function(data){
-                $scope.cardsList = data;
+            CardsDataService.getCardsnumber(function(data){
+                $scope.cardsnumber = data;
             })
             CardsDataService.getCards(function(data){
-                $scope.cardsListround2 = data;
+                $scope.cardsList = data;
+                data.shuffle();
+                $scope.cardsList.splice($scope.cardsnumber);
+                $scope.cardsListround2 = JSON.parse(JSON.stringify($scope.cardsList));
             })
             CardsDataService.getTimer(function(data){
                 $scope.counter = data.value;
@@ -78,6 +81,7 @@ angular.module('starter.controllers', [])
                 $scope.findsList.push($scope.cardsList[0]);
                 $scope.cardsList.splice(0,1);
                 console.log($scope.cardsList);
+                console.log($scope.cardsListround2);
                 if (round % 2 == 1) {
                     $scope.scoreRight++;
                 }
@@ -90,6 +94,7 @@ angular.module('starter.controllers', [])
                     $scope.end = 'show';
                     $scope.hideready = 'show';
                     $scope.cardsList= $scope.cardsListround2;
+                    $scope.cardsList.shuffle();
                     if ( party == 1 ){
                         $scope.endmsg = 'Fin de la 1ère manche';
                         party++;
@@ -293,7 +298,7 @@ angular.module('starter.controllers', [])
 
 
     // ----------------------------------------------------------------------------LISTE DES CATEGORIES
-    .controller('ListCtrl', function ($scope,$ionicPlatform, $state, CardsDataService) {
+    .controller('ListCtrl', function ($scope,$ionicPlatform, $state, CardsDataService,$ionicPopup) {
         $scope.$on('$ionicView.enter', function(e) {
             CardsDataService.getAll(function(data){
                 $scope.itemsList = data
@@ -301,8 +306,38 @@ angular.module('starter.controllers', [])
             CardsDataService.getCats(function(data){
                 $scope.catsList = data
             })
+            $scope.addForm = {}
         })
 
+        $scope.addCategory = function(){
+            var myPopup = $ionicPopup.show({
+                template: '<input type = "text" ng-model = "addForm.cat">',
+                title: 'Nom de la catégorie',
+                scope: $scope,
+
+                buttons: [
+                    {
+                        text: '<b>Annuler</b>',
+                        type: 'button-assertive',
+                        onTap: function(e) {
+                            myPopup.close();
+                        }
+                    },
+                    {
+                        text: '<b>Valider</b>',
+                        type: 'button-positive',
+                        onTap: function(e) {
+                            CardsDataService.addCat($scope.addForm);
+                            myPopup.close();
+                            CardsDataService.getCats(function(data){
+                                $scope.catsList = data
+                            })
+                        }
+                    }
+                ]
+            });
+        }
+        
         $scope.viewCat = function(idCat){
             $state.go('cartes', {id: idCat.id, cat: idCat.name})
         }
@@ -414,3 +449,17 @@ var myPopup = $ionicPopup.show({
     });
 };
 })
+
+
+
+// Mélanger les cartes
+Array.prototype.shuffle = function() {
+    var input = this;
+    for (var i = input.length-1; i >=0; i--) {
+        var randomIndex = Math.floor(Math.random()*(i+1));
+        var itemAtIndex = input[randomIndex];
+        input[randomIndex] = input[i];
+        input[i] = itemAtIndex;
+    }
+    return input;
+}

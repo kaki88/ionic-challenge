@@ -1,18 +1,24 @@
-<ion-view view-title="Cartes {{title}}" class="listcat">
-    <ion-content scroll="false">
-
-        <button class="button button-block button-balanced" ng-click="addForm()">
-            <i class="icon ion-plus-circled"></i> Ajouter
+<ion-view view-title=" {{title}}" class="listcat">
+    <ion-nav-buttons side="right">
+        <button class="button button-block button-balanced addbt" ng-click="addForm()">
+            <i class="icon ion-plus-circled"></i>  AJOUTER
         </button>
+    </ion-nav-buttons>
 
-        <ion-scroll>
+
+
+
+    <ion-content >
+
+
+
         <ul ng-repeat="item in itemsList">
-        <li class="item catlistitem">
+        <li class="item catlistitem" ng-click="gotoEditCard(item)">
             <span>{{item.title}}</span>
-            <span class="button button-small button-royal right"  ng-click="gotoEditCard(item)"> <i class=" ion-edit"></i> Editer</span>
+            <span class="right"><i class="icon ion-edit"></i></span>
         </li>
         </ul>
-        </ion-scroll>
+
 
     </ion-content>
 </ion-view>

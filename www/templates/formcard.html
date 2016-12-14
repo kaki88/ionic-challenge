@@ -2,10 +2,10 @@
     <ion-content>
         <div class="list">
             <label class="item item-input">
-                <input type="text" placeholder="Titre de la carte" ng-model="cardForm.title">
+               <span class="formtitle">Titre: </span> <input type="text" placeholder="Titre de la carte" ng-model="cardForm.title">
             </label>
             <label class="item item-input">
-                <select ng-model="allCat" ng-options="obj.name for obj in allCats track by obj.id"></select>
+                <span class="formtitle">Catégorie: </span><select ng-model="allCat" ng-options="obj.name for obj in allCats track by obj.id"></select>
             </label>
         </div>
 

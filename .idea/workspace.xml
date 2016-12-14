@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b5286e1f-4973-402e-8102-74c6016fb357" name="Default" comment="add second round, fix some bugs on device">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/files/321.mp3" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/css/jh-angular-number-picker.css" />
+    <list default="true" id="b5286e1f-4973-402e-8102-74c6016fb357" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/game.db" afterPath="$PROJECT_DIR$/www/game.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/animate.css" afterPath="$PROJECT_DIR$/www/css/animate.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/style.css" afterPath="$PROJECT_DIR$/www/css/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/app.js" afterPath="$PROJECT_DIR$/www/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers.js" afterPath="$PROJECT_DIR$/www/js/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/game.html" afterPath="$PROJECT_DIR$/www/templates/game.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/home.html" afterPath="$PROJECT_DIR$/www/templates/home.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/services.js" afterPath="$PROJECT_DIR$/www/js/services.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/formcard.html" afterPath="$PROJECT_DIR$/www/templates/formcard.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/list.html" afterPath="$PROJECT_DIR$/www/templates/list.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/listcards.html" afterPath="$PROJECT_DIR$/www/templates/listcards.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/rules.html" afterPath="$PROJECT_DIR$/www/templates/rules.html" />
     </list>
     <list id="e82fcc32-28c8-4fb9-9758-83c7c57e4d70" name="New changelist" comment="" />
     <ignored path="app.iws" />
@@ -36,11 +33,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="225" column="29" selection-start-line="225" selection-start-column="29" selection-end-line="225" selection-end-column="29" />
+            <state relative-caret-position="262">
+              <caret line="230" column="31" selection-start-line="230" selection-start-column="31" selection-end-line="230" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -49,38 +46,18 @@
       <file leaf-file-name="services.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/services.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1080">
-              <caret line="36" column="20" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="20" />
+            <state relative-caret-position="373">
+              <caret line="85" column="36" selection-start-line="85" selection-start-column="36" selection-end-line="85" selection-end-column="36" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controllers.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="controllers.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4361">
-              <caret line="44" column="34" selection-start-line="44" selection-start-column="12" selection-end-line="44" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="list.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/templates/list.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="49" selection-start-line="0" selection-start-column="34" selection-end-line="0" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="listcards.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/templates/listcards.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="3" column="58" selection-start-line="3" selection-start-column="58" selection-end-line="3" selection-end-column="58" />
+            <state relative-caret-position="252">
+              <caret line="62" column="58" selection-start-line="62" selection-start-column="58" selection-end-line="62" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -102,20 +79,20 @@
         <option value="$PROJECT_DIR$/config.xml" />
         <option value="$PROJECT_DIR$/platforms/android/ant.properties" />
         <option value="$PROJECT_DIR$/www/templates/form.html" />
-        <option value="$PROJECT_DIR$/www/templates/formcard.html" />
         <option value="$PROJECT_DIR$/www/templates/formadd.html" />
         <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/templates/config.html" />
-        <option value="$PROJECT_DIR$/www/js/services.js" />
         <option value="$PROJECT_DIR$/www/templates/game.html" />
         <option value="$PROJECT_DIR$/www/css/animate.css" />
-        <option value="$PROJECT_DIR$/www/js/app.js" />
         <option value="$PROJECT_DIR$/www/templates/home.html" />
         <option value="$PROJECT_DIR$/www/templates/rules.html" />
-        <option value="$PROJECT_DIR$/www/js/controllers.js" />
-        <option value="$PROJECT_DIR$/www/templates/list.html" />
-        <option value="$PROJECT_DIR$/www/templates/listcards.html" />
+        <option value="$PROJECT_DIR$/www/templates/formcard.html" />
         <option value="$PROJECT_DIR$/www/css/style.css" />
+        <option value="$PROJECT_DIR$/www/templates/listcards.html" />
+        <option value="$PROJECT_DIR$/www/templates/list.html" />
+        <option value="$PROJECT_DIR$/www/js/app.js" />
+        <option value="$PROJECT_DIR$/www/js/services.js" />
+        <option value="$PROJECT_DIR$/www/js/controllers.js" />
       </list>
     </option>
   </component>
@@ -211,38 +188,6 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -255,11 +200,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Olivier\app\www" />
       <recent name="C:\Users\Olivier\app\www\files" />
       <recent name="C:\Users\Olivier\app\www\js" />
       <recent name="C:\Users\Olivier\app\www\css" />
       <recent name="C:\Users\Olivier\app\www\fonts" />
-      <recent name="C:\Users\Olivier\app\www\img" />
     </key>
   </component>
   <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
@@ -277,19 +222,15 @@
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
           <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/bower.json</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/css/animate.css</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/www/css/style.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/js/app.js</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/www/js/controllers.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/js/services.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/lib/angular/.bower.json</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/lib/angular/angular.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/lib/angular/angular.min.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/lib/angular/angular.min.js.gzip</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/lib/angular/angular.min.js.map</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/lib/angular/bower.json</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/lib/angular/package.json</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/templates/config.html</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/www/templates/game.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/templates/home.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/templates/list.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/templates/listcards.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/templates/rules.html</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -297,7 +238,8 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/files/countdown.mp3</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/css/jh-angular-number-picker.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/files/321.mp3</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -305,7 +247,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="true" />
           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/lib/angular/LICENSE.md</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Restored" />
@@ -436,7 +377,7 @@
       <workItem from="1481131709213" duration="25798000" />
       <workItem from="1481235476047" duration="26430000" />
       <workItem from="1481361907431" duration="13239000" />
-      <workItem from="1481497971464" duration="77302000" />
+      <workItem from="1481497971464" duration="91566000" />
     </task>
     <task id="LOCAL-00001" summary="add scores">
       <created>1481302566204</created>
@@ -480,11 +421,18 @@
       <option name="project" value="LOCAL" />
       <updated>1481659443312</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="add sounds, rules, about">
+      <created>1481674951505</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1481674951505</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="163236000" />
+    <option name="totallyTimeSpent" value="177500000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="696" extended-state="6" />
@@ -531,7 +479,8 @@
     <MESSAGE value="fix somes bugs, clean code" />
     <MESSAGE value="home interface" />
     <MESSAGE value="add second round, fix some bugs on device" />
-    <option name="LAST_COMMIT_MESSAGE" value="add second round, fix some bugs on device" />
+    <MESSAGE value="add sounds, rules, about" />
+    <option name="LAST_COMMIT_MESSAGE" value="add sounds, rules, about" />
     <option name="PRESELECT_EXISTING_CHANGELIST" value="false" />
   </component>
   <component name="XDebuggerManager">
@@ -824,14 +773,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/formcard.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="11" column="109" selection-start-line="11" selection-start-column="109" selection-end-line="11" selection-end-column="109" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -852,14 +793,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="118" column="84" selection-start-line="118" selection-start-column="65" selection-end-line="118" selection-end-column="84" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -888,26 +821,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
+    <entry file="file://$PROJECT_DIR$/www/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4361">
-          <caret line="44" column="34" selection-start-line="44" selection-start-column="12" selection-end-line="44" selection-end-column="34" />
+        <state relative-caret-position="262">
+          <caret line="230" column="31" selection-start-line="230" selection-start-column="31" selection-end-line="230" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/services.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1080">
-          <caret line="36" column="20" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/templates/list.html">
+    <entry file="file://$PROJECT_DIR$/www/templates/formaddcat.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="49" selection-start-line="0" selection-start-column="34" selection-end-line="0" selection-end-column="49" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/templates/formcard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="150" selection-start-line="7" selection-start-column="58" selection-end-line="7" selection-end-column="150" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="46" column="10" selection-start-line="46" selection-start-column="10" selection-end-line="46" selection-end-column="10" />
           <folding />
         </state>
       </provider>
@@ -915,15 +856,31 @@
     <entry file="file://$PROJECT_DIR$/www/templates/listcards.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
-          <caret line="3" column="58" selection-start-line="3" selection-start-column="58" selection-end-line="3" selection-end-column="58" />
+          <caret line="3" column="58" selection-start-line="3" selection-start-column="51" selection-end-line="3" selection-end-column="58" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/css/style.css">
+    <entry file="file://$PROJECT_DIR$/www/templates/list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="225" column="29" selection-start-line="225" selection-start-column="29" selection-end-line="225" selection-end-column="29" />
+        <state relative-caret-position="36">
+          <caret line="2" column="87" selection-start-line="2" selection-start-column="76" selection-end-line="2" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/services.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="85" column="36" selection-start-line="85" selection-start-column="36" selection-end-line="85" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="62" column="58" selection-start-line="62" selection-start-column="58" selection-end-line="62" selection-end-column="58" />
           <folding />
         </state>
       </provider>
