@@ -72,7 +72,7 @@ angular.module('starter.controllers', [])
             $scope.scoreRight = 0;
             $scope.team = 1;
             $scope.turn = 1;
-            var party = 1;
+           $scope.party = 1;
             var round = 0;
             var mytimeout = null;
             change('error');
@@ -80,8 +80,6 @@ angular.module('starter.controllers', [])
             $scope.valide = function(){
                 $scope.findsList.push($scope.cardsList[0]);
                 $scope.cardsList.splice(0,1);
-                console.log($scope.cardsList);
-                console.log($scope.cardsListround2);
                 if (round % 2 == 1) {
                     $scope.scoreRight++;
                 }
@@ -95,9 +93,9 @@ angular.module('starter.controllers', [])
                     $scope.hideready = 'show';
                     $scope.cardsList= $scope.cardsListround2;
                     $scope.cardsList.shuffle();
-                    if ( party == 1 ){
+                    if ( $scope.party == 1 ){
                         $scope.endmsg = 'Fin de la 1ère manche';
-                        party++;
+                        $scope.party++;
                         round++;
                         $scope.team =  (round % 2) + 1;
                     }
@@ -128,7 +126,7 @@ angular.module('starter.controllers', [])
                 $scope.audio.play();
                 }
                 }, 300);
-                if ( party == 2 ){
+                if ( $scope.party == 2 ){
                     $scope.end = 'hide';
                 }
                 change('start');
