@@ -49,10 +49,11 @@
     width: 48vw;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 20px;
+    margin-top: 10px;
 }
 
 .team-right{
-    background-color: green;
+    background-color: red;
     color: white;
     padding: 5px;
     width: 48vw;
@@ -60,6 +61,7 @@
     border-bottom-left-radius: 20px;
     right: 0;
     position: absolute;
+    margin-top: 10px;
 }
 
 .scrlft{
