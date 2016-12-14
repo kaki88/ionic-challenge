@@ -205,3 +205,29 @@
     -webkit-animation: fadeInLeft 1s;
     animation: fadeInLeft 1s;
 }
+/*---------------------------------------------------------------------------------------regles */
+.rulestitle{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.rules{
+    background-color: crimson;
+}
+
+.rulesdiv{
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin-bottom: 5px;
+}
+/*---------------------------------------------------------------------------------------liste catégories */
+.listcat{
+    background-color: #939ba5;
+}
+
+.catlistitem{
+    text-transform: capitalize;
+    margin: 4px;
+    padding: 3px!important;
+}

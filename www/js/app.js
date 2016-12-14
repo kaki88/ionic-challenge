@@ -18,7 +18,8 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services'])
 
           .state('accueil', {
               url: '/accueil',
-              templateUrl: 'templates/home.html'
+              templateUrl: 'templates/home.html',
+              controller: 'Home'
           })  
           
           .state('jeu', {

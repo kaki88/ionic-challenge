@@ -1,11 +1,11 @@
-<ion-view view-title="Catégories">
+<ion-view view-title="Catégories" class="listcat">
     <ion-content >
 
 
         <ul ng-repeat="item in catsList">
-            <li class="item" ng-click="viewCat(item)">
+            <li class="item catlistitem" ng-click="viewCat(item)">
                 <span>{{item.name}}</span>
-                <span class="right"> <i class="icon ion-eye"></i></span>
+                <span class="right"> {{item.count}}</span>
             </li>
         </ul>
 

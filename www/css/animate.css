@@ -2731,22 +2731,29 @@
 .zoomIn {
   -webkit-animation-name: zoomIn;
   animation-name: zoomIn;
-  animation-duration: 1s;
-  animation-delay: 1s;
+  animation-duration: 0.5s;
+  animation-delay: 0.3s;
 }
 
 .zoomIn2 {
   -webkit-animation-name: zoomIn;
   animation-name: zoomIn;
-  animation-duration: 1s;
-  animation-delay: 2s;
+  animation-duration: 0.5s;
+  animation-delay: 0.8s;
 }
 
 .zoomIn3 {
   -webkit-animation-name: zoomIn;
   animation-name: zoomIn;
-  animation-duration: 1s;
-  animation-delay: 3s;
+  animation-duration: 0.5s;
+  animation-delay: 1.3s;
+}
+
+.zoomIn4 {
+  -webkit-animation-name: zoomIn;
+  animation-name: zoomIn;
+  animation-duration: 0.5s;
+  animation-delay: 1.8s;
 }
 
 @-webkit-keyframes zoomInDown {
