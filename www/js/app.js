@@ -11,6 +11,43 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services'])
           StatusBar.styleDefault()
         }
       })
+
+
+        var admobid = {};
+
+// select the right Ad Id according to platform
+
+        if( /(android)/i.test(navigator.userAgent) ) {
+            admobid = { // for Android
+                banner: 'ca-app-pub-3193271501395281/5676408651',
+                interstitial: 'ca-app-pub-3193271501395281/9467479859'
+            };
+        } else if(/(ipod|iphone|ipad)/i.test(navigator.userAgent)) {
+            admobid = { // for iOS
+                banner: 'ca-app-pub-3193271501395281/5676408651',
+                interstitial: 'ca-app-pub-3193271501395281/9467479859'
+            };
+        } else {
+            admobid = { // for Windows Phone
+                banner: 'ca-app-pub-3193271501395281/5676408651',
+                interstitial: 'ca-app-pub-3193271501395281/9467479859'
+            };
+        }
+
+        if(window.AdMob) AdMob.createBanner( {
+            adId:admobid.banner,
+            isTesting: true,
+            position:AdMob.AD_POSITION.BOTTOM_CENTER,
+            autoShow:true} );
+
+        if(window.AdMob) AdMob.prepareInterstitial( {
+            adId:admobid.interstitial,
+            autoShow:true} );
+
+
+        
+
+
     })
     // ----------------------------------------------------------------------------ROUTES
     .config(function($stateProvider, $urlRouterProvider) {
